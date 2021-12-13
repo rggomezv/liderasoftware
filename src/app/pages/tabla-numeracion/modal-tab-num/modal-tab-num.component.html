@@ -1,2 +1,47 @@
-<p>modal-tab-num works!</p>
-<h1>HOLA</h1>
+<div>
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Favorite food</mat-label>
+        <mat-select>
+            <mat-option [(ngModel)]="datosNuevos[0]">
+                {{datosNuevos[0]}} {{datosNuevos[0]}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    <div class="dos">
+        <label for="">Subdiario</label>
+        <mat-form-field appearance="fill">
+            <mat-label>{{datosNuevos2[0]}} {{datosNuevos2[1]}}</mat-label>
+            <mat-select disabled=true [(value)]="datosNuevos">
+                <!-- <mat-option>{{datosNuevos[0]}}</mat-option> -->
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="dos">
+        <mat-form-field>
+            <input disabled=true matInput placeholder="Numero Actual" [(ngModel)]="datosNuevos.nl_nume">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Ultimo numero Real" [(ngModel)]="datosNuevos[0]" max="15" maxlength="15"
+                type="number">
+        </mat-form-field>
+    </div>
+    <div class="dos">
+        <ul>
+            <p><small>Creación</small></p>
+            <li>usuario: {{datosNuevos.nl_usrcrea}}</li>
+            <li>Fecha: {{datosNuevos.nl_feccrea}}</li>
+            <li>Hora: {{datosNuevos.nl_hracrea}}</li>
+        </ul>
+        <ul>
+            <p><small>Acrualización</small></p>
+            <li>usuario:</li>
+            <li>Fecha:</li>
+            <li>Hora:</li>
+        </ul>
+
+    </div>
+
+
+</div>
+<button mat-raised-button color="primary" (click)="operar()">Guardar</button>
+<button mat-raised-button color="accent" (click)="cerrar()">Cancelar</button>

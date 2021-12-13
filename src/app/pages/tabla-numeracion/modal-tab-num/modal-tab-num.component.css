@@ -1,0 +1,7 @@
+.dos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+     /* background-color: blueviolet;
+     color: brown; */
+}

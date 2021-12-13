@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { switchMap } from 'rxjs/operators';
 
+
+import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
+import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
 @Component({
   selector: 'app-modal-tab-num',
   templateUrl: './modal-tab-num.component.html',
@@ -7,9 +12,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalTabNumComponent implements OnInit {
 
-  constructor() { }
+  datosNuevos: TablaNumeracion;
+  datosNuevos2: TablaNumeracion;
+
+  constructor(
+    private dialogRef: MatDialogRef<ModalTabNumComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: TablaNumeracion,
+    private servivio: TablaNumeracionService
+  ) { }
 
   ngOnInit(): void {
+    this.datosNuevos = { ...this.data['principal'] };
+    this.datosNuevos2 = { ...this.data['secundario'] };
+    console.log(this.datosNuevos)
+  }
+
+  operar() {
+    if (this.datosNuevos != null && this.datosNuevos[0]> 0) {
+      //MODIFICAR
+      this.servivio.modificar(this.datosNuevos).pipe(switchMap(() => {
+        return this.servivio.listar();
+      }))      
+      .subscribe(data => {
+        this.servivio.settabNumCambio(data);
+        this.servivio.setMensajeCambio("SE MODIFICO");
+      });
+
+    } else {
+      //REGISTRAR
+      this.servivio.registrar(this.datosNuevos).subscribe(() => {
+        this.servivio.listar().subscribe(data => {
+          this.servivio.settabNumCambio(data);
+          this.servivio.setMensajeCambio("SE REGISTRO");
+        });
+      });
+    }
+    this.cerrar();
+  }
+
+  cerrar() {
+    this.dialogRef.close();
   }
 
 }

@@ -15,7 +15,10 @@ export class GenericService<T> {
     return this.http.get<T[]>(this.url);
   }
 
-  listarPorId(id: number) {
+  listarPorId(id1: string, id2: string, id3: string) {
+    return this.http.get<T>(`${this.url}/${id1}/${id2}/${id3}`);
+  }
+  listarPorPK(id: number) {
     return this.http.get<T>(`${this.url}/${id}`);
   }
 

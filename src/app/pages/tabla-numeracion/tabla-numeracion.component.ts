@@ -18,7 +18,8 @@ import { ModalTabNumComponent } from './modal-tab-num/modal-tab-num.component';
 })
 export class TablaNumeracionComponent implements OnInit {
 
-  displayedColumns = ['idmedico', 'nombres', 'apellidos', 'cmp', 'acciones'];
+  displayedColumns = [ 'subdiario', 'apellidos', 'cmp', 'acciones'];
+  // displayedColumns = ['id', 'anio', 'mes', 'subdiario', 'apellidos', 'cmp', 'acciones'];
   dataSource: MatTableDataSource<TablaNumeracion>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,11 +35,11 @@ export class TablaNumeracionComponent implements OnInit {
     this.tablaNumeracionService.gettabNumCambio().subscribe(data => {
       this.crearTabla(data);
     });
-    
+
     this.tablaNumeracionService.getMensajeCambio().subscribe(data => {
       this.snackBar.open(data, 'AVISO', { duration: 2000 });
     });
-    
+
     this.tablaNumeracionService.listar().subscribe(data => {
       console.log(data)
       this.crearTabla(data);
@@ -56,9 +57,13 @@ export class TablaNumeracionComponent implements OnInit {
   }
 
   abrirDialogo(tablaNumeracion?: TablaNumeracion) {
-    this.dialog.open(ModalTabNumComponent, {
-      width: '250px',
-      data: tablaNumeracion
+    let dataTabla: TablaNumeracion;
+    let urlTest = this.tablaNumeracionService.listarPorId(tablaNumeracion[0], tablaNumeracion[3], tablaNumeracion[4])
+    urlTest.subscribe((data2: TablaNumeracion) => {
+      this.dialog.open(ModalTabNumComponent, {
+        width: '500',
+        data: { principal:data2,secundario: tablaNumeracion}
+      });
     });
   }
 

@@ -1,21 +1,31 @@
 <div class="example-container mat-elevation-z8">
+<div class="">
 
+</div>
     <div class="example-header">
       <mat-form-field>
-        <input matInput (keyup)="filtrar($event)" placeholder="Buscar médico">
+        <input matInput (keyup)="filtrar($event)" placeholder="Buscar ">
       </mat-form-field>
     </div>
   
     <mat-table [dataSource]="dataSource" matSort>
   
-      <ng-container matColumnDef="idmedico">
+      <!-- <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
         <mat-cell *matCellDef="let a" > {{'#'}} </mat-cell>
-        <!-- <tr mat-header-cell *matRowDef="let myRowData; ">{{myRowData}}</tr> -->
+        <tr mat-header-cell *matRowDef="let myRowData; ">{{myRowData}}</tr>
       </ng-container>
+      <ng-container matColumnDef="anio" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> año </mat-header-cell>
+        <mat-cell *matCellDef="let a" > {{a[3]}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="mes">
+        <mat-header-cell *matHeaderCellDef mat-sort-header hidden> mes </mat-header-cell>
+        <mat-cell *matCellDef="let a" > {{a[4]}} </mat-cell>
+      </ng-container> -->
   
       
-      <ng-container matColumnDef="nombres">
+      <ng-container matColumnDef="subdiario">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Subdiario </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row[0]}} </mat-cell>
       </ng-container>
@@ -26,6 +36,14 @@
         <mat-cell *matCellDef="let row"> {{row[1]}} </mat-cell>
       </ng-container>
   
+      <!-- <ng-container matColumnDef="cmp">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Actual </mat-header-cell>
+        <mat-cell *matCellDef="let a"> {{a[2]}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cmp">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Actual </mat-header-cell>
+        <mat-cell *matCellDef="let a"> {{a[2]}} </mat-cell> 
+      </ng-container>-->
       <ng-container matColumnDef="cmp">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Actual </mat-header-cell>
         <mat-cell *matCellDef="let a"> {{a[2]}} </mat-cell>
