@@ -14,6 +14,7 @@ export class ModalTabNumComponent implements OnInit {
 
   datosNuevos: TablaNumeracion;
   datosNuevos2: TablaNumeracion;
+  date: Date = new Date();
 
   constructor(
     private dialogRef: MatDialogRef<ModalTabNumComponent>,
@@ -28,15 +29,15 @@ export class ModalTabNumComponent implements OnInit {
   }
 
   operar() {
-    if (this.datosNuevos != null && this.datosNuevos[0]> 0) {
+    if (this.datosNuevos != null && this.datosNuevos[0] > 0) {
       //MODIFICAR
       this.servivio.modificar(this.datosNuevos).pipe(switchMap(() => {
         return this.servivio.listar();
-      }))      
-      .subscribe(data => {
-        this.servivio.settabNumCambio(data);
-        this.servivio.setMensajeCambio("SE MODIFICO");
-      });
+      }))
+        .subscribe(data => {
+          this.servivio.settabNumCambio(data);
+          this.servivio.setMensajeCambio("SE MODIFICO");
+        });
 
     } else {
       //REGISTRAR

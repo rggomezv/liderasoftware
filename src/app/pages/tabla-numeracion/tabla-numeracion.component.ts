@@ -41,7 +41,7 @@ export class TablaNumeracionComponent implements OnInit {
     });
 
     this.tablaNumeracionService.listar().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.crearTabla(data);
     });
   }
@@ -57,12 +57,14 @@ export class TablaNumeracionComponent implements OnInit {
   }
 
   abrirDialogo(tablaNumeracion?: TablaNumeracion) {
-    let dataTabla: TablaNumeracion;
     let urlTest = this.tablaNumeracionService.listarPorId(tablaNumeracion[0], tablaNumeracion[3], tablaNumeracion[4])
     urlTest.subscribe((data2: TablaNumeracion) => {
       this.dialog.open(ModalTabNumComponent, {
         width: '500',
-        data: { principal:data2,secundario: tablaNumeracion}
+        data: {
+           principal:data2,
+           secundario: tablaNumeracion,
+          }
       });
     });
   }

@@ -1,13 +1,6 @@
 <div>
-    <!-- <mat-form-field appearance="fill">
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-            <mat-option [(ngModel)]="datosNuevos[0]">
-                {{datosNuevos[0]}} {{datosNuevos[0]}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field> -->
-    <div class="dos">
+    <h1></h1>
+    <div class="dos comobo">
         <label for="">Subdiario</label>
         <mat-form-field appearance="fill">
             <mat-label>{{datosNuevos2[0]}} {{datosNuevos2[1]}}</mat-label>
@@ -18,30 +11,36 @@
     </div>
     <div class="dos">
         <mat-form-field>
-            <input disabled=true matInput placeholder="Numero Actual" [(ngModel)]="datosNuevos.nl_nume">
+            <input class="text"  matInput placeholder="Numero Actual" >
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Ultimo numero Real" [(ngModel)]="datosNuevos[0]" max="15" maxlength="15"
-                type="number">
+            <input matInput disabled=true placeholder="Ultimo numero Real" [(ngModel)]="datosNuevos[0].nl_nume">
         </mat-form-field>
     </div>
     <div class="dos">
         <ul>
             <p><small>Creación</small></p>
-            <li>usuario: {{datosNuevos.nl_usrcrea}}</li>
-            <li>Fecha: {{datosNuevos.nl_feccrea}}</li>
-            <li>Hora: {{datosNuevos.nl_hracrea}}</li>
+            <li>usuario: {{datosNuevos[0].nl_usrcrea}}</li>
+            <li>Fecha: {{datosNuevos[0].nl_feccrea}}</li>
+            <li>Hora: {{datosNuevos[0].nl_hracrea}}</li>
         </ul>
         <ul>
-            <p><small>Acrualización</small></p>
+            <p><small>Actualización</small></p>
             <li>usuario:</li>
-            <li>Fecha:</li>
-            <li>Hora:</li>
+            <li>Fecha: {{date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay()}}</li>
+            <li>Hora: {{date.getHours()+":"+date.getMinutes()+":"+date.getMinutes()}}</li>
         </ul>
 
+    </div>
+    <div class="dos">
+        <button mat-raised-button color="primary" (click)="operar()">Guardar</button>
+<button mat-raised-button color="accent" (click)="cerrar()">Cancelar</button>
     </div>
 
 
 </div>
-<button mat-raised-button color="primary" (click)="operar()">Guardar</button>
-<button mat-raised-button color="accent" (click)="cerrar()">Cancelar</button>
+<div class="card">
+    <div class="card-body">
+      
+    </div>
+  </div>
