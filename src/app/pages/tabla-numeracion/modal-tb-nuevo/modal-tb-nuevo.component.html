@@ -1,38 +1,32 @@
 
 <div class="card">
     <div class="card-header">
-        Editar
+        Nuevo
       </div>
     <div class="card-body">
         <div>
             <div class="dos comobo">
-                <mat-form-field appearance="fill" >
-                    <mat-label>{{datosNuevos2[0]}} {{datosNuevos2[1]}}</mat-label>
-                    <mat-select disableRipple disabled=true>
-                      <mat-option select value="1">{{datosNuevos2[0]}} {{datosNuevos2[1]}}</mat-option>
+                <mat-form-field  >
+                    <mat-label>Subdiario</mat-label>
+                    <mat-select disableRippleng >
+                      <mat-option  select value="1">{{datosNuevos[0][1]}}</mat-option>
                     </mat-select>
                   </mat-form-field>
             </div>
-            <div class="dos">
+                       <div class="dos">
                 <mat-form-field>
-                    <input class="text" matInput placeholder="Numero Actual">
-                </mat-form-field>
-                
-            </div>
-            <div class="dos">
-                <mat-form-field>
-                    <input matInput disabled=true placeholder="Ultimo numero Real" [(ngModel)]="datosNuevos[0].nl_nume">
+                    <input matInput  placeholder="Ultimo numero Real"  >
                 </mat-form-field>
             </div>
             <div class="dos">
-                <ul>
+                <!-- <ul>
                     <p><small>Creación</small></p>
                     <li>usuario: {{datosNuevos[0].nl_usrcrea}}</li>
                     <li>Fecha: {{datosNuevos[0].nl_feccrea}}</li>
                     <li>Hora: {{datosNuevos[0].nl_hracrea}}</li>
-                </ul>
+                </ul> -->
                 <ul>
-                    <p><small>Actualización</small></p>
+                    <p><small>Creación</small></p>
                     <li>usuario:</li>
                     <li>Fecha: {{date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay()}}</li>
                     <li>Hora: {{date.getHours()+":"+date.getMinutes()+":"+date.getMinutes()}}</li>
@@ -40,7 +34,7 @@
         
             </div>
             <div class="dos">
-                <button type="button" class=" btn btn-success" (click)="operar()"><i class="fas fa-save"></i>Guardar</button>
+                <button type="button" class=" btn btn-success" (click)="operar()">Guardar</button>
                 <button type="button" class=" btn btn-danger" (click)="cerrar()">Volver</button>
             </div>
         

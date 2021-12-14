@@ -9,7 +9,12 @@
     overflow: auto;
     max-height: 500px;
   }
-  
+  .buscar .mat-icon{
+    color: dimgray;
+  }
+  .consultar .mat-icon{
+    color: dodgerblue;
+  }
   .mobile-label {
     display: none;
   }

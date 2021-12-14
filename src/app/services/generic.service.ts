@@ -12,11 +12,11 @@ export class GenericService<T> {
   ) { }
 
   listar(){
-    return this.http.get<T[]>(this.url);
+    return this.http.get<T[]>(this.url+'/Listarlconume/0001');
   }
 
   listarPorId(id1: string, id2: string, id3: string) {
-    return this.http.get<T>(`${this.url}/${id1}/${id2}/${id3}`);
+    return this.http.get<T>(`${this.url}/Listarlconume/0001/${id1}/${id2}/${id3}`);
   }
   listarPorPK(id: number) {
     return this.http.get<T>(`${this.url}/${id}`);
@@ -27,10 +27,14 @@ export class GenericService<T> {
   }
 
   modificar(t: T) {
-    return this.http.put(this.url, t);
+    return this.http.put(this.url+'/registraNume/0001', t);
   }
 
   eliminar(id: number) {
     return this.http.delete(`${this.url}/${id}`);
+  }
+  
+  eliminarRegTablaNume(nl_subdia:string,nl_anio:string, nl_mes:string ){
+    return this.http.delete(`${this.url}/elimTablanNume/0001/${nl_subdia}/${nl_anio}/${nl_mes}`);
   }
 }

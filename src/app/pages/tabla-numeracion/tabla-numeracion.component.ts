@@ -10,6 +10,7 @@ import { switchMap } from 'rxjs/operators';
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
 import { ModalTabNumComponent } from './modal-tab-num/modal-tab-num.component';
+import { ModalTbNuevoComponent } from './modal-tb-nuevo/modal-tb-nuevo.component';
 
 @Component({
   selector: 'app-tabla-numeracion',
@@ -68,9 +69,19 @@ export class TablaNumeracionComponent implements OnInit {
       });
     });
   }
+  abrirDialogoNuevo(tablaNumeracion?: TablaNumeracion) {
+    this.tablaNumeracionService.listar().subscribe(rest => {
+      // console.log(rest)
+      this.dialog.open(ModalTbNuevoComponent, {
+        width: '400px',
+        data: rest
+      });
+    });
+    
+  }
 
   eliminar(tablaNumeracion: TablaNumeracion) {
-    this.tablaNumeracionService.eliminar(tablaNumeracion.nl_nume).pipe(switchMap(() => {
+    this.tablaNumeracionService.eliminarRegTablaNume(tablaNumeracion[0],tablaNumeracion[3],tablaNumeracion[4]).pipe(switchMap(() => {
       return this.tablaNumeracionService.listar();
     }))
       .subscribe(data => {

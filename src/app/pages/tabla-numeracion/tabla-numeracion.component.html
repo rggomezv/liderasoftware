@@ -1,73 +1,90 @@
 <div class="card">
+  <h3 class="card-header">Tabla de Numeración LCNUME01</h3>
   <div class="card-body">
+    <!-- botones -->
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12 col-sm-6 d-flex justify-content-evenly">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Año</mat-label>
+                <input matInput value="2021">
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-sm-6">
+              <mat-form-field appearance="fill">
+            <mat-label>Mes</mat-label>
+            <mat-select>
+              <mat-option value="option1">01</mat-option>
+              <mat-option value="option2">02</mat-option>
+              <mat-option value="option3">03</mat-option>
+              <mat-option value="option1">04</mat-option>
+              <mat-option value="option2">05</mat-option>
+              <mat-option value="option3">06</mat-option>
+              <mat-option value="option1">07</mat-option>
+              <mat-option value="option2">08</mat-option>
+              <mat-option value="option3">09</mat-option>
+              <mat-option value="option3">10</mat-option>
+              <mat-option value="option3">11</mat-option>
+              <mat-option value="option3">12</mat-option>
+            </mat-select>
+          </mat-form-field>
+            </div>
+          </div>
 
-    <!-- <div class="example-container mat-elevation-z8"> -->
-
-    <div class="example-header">
-      <mat-form-field>
-        <input matInput (keyup)="filtrar($event)" placeholder="Buscar ">
-      </mat-form-field>
+          
+        </div>
+        <div class="col-12 col-sm-6 buscar">
+          <mat-icon>search</mat-icon>
+          <mat-form-field>
+            <input matInput (keyup)="filtrar($event)" placeholder="Buscar ">
+          </mat-form-field>
+        </div>
+      </div>
     </div>
-
+    <!-- tabla -->
     <mat-table class="table-responsive" [dataSource]="dataSource" matSort>
-
-      <!-- <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
-          <mat-cell *matCellDef="let a" > {{'#'}} </mat-cell>
-          <tr mat-header-cell *matRowDef="let myRowData; ">{{myRowData}}</tr>
-        </ng-container>
-        <ng-container matColumnDef="anio" >
-          <mat-header-cell *matHeaderCellDef mat-sort-header> año </mat-header-cell>
-          <mat-cell *matCellDef="let a" > {{a[3]}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="mes">
-          <mat-header-cell *matHeaderCellDef mat-sort-header hidden> mes </mat-header-cell>
-          <mat-cell *matCellDef="let a" > {{a[4]}} </mat-cell>
-        </ng-container> -->
-
-
       <ng-container matColumnDef="subdiario">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Subdiario </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <h3>Subdiario</h3>
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"><span class="mobile-label">Subdiario:</span>
           {{row[0]}} </mat-cell>
       </ng-container>
-
-
       <ng-container matColumnDef="apellidos">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <h3>Descripción</h3>
+        </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <span class="mobile-label">Descripción:</span>
-          {{row[1]}} </mat-cell>
+          {{row[1]}}
+        </mat-cell>
       </ng-container>
-
-      <!-- <ng-container matColumnDef="cmp">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Actual </mat-header-cell>
-          <mat-cell *matCellDef="let a"> {{a[2]}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="cmp">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Actual </mat-header-cell>
-          <mat-cell *matCellDef="let a"> {{a[2]}} </mat-cell> 
-        </ng-container>-->
       <ng-container matColumnDef="cmp">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Actual </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <h3> Numero Actual</h3>
+        </mat-header-cell>
         <mat-cell *matCellDef="let a">
           <span class="mobile-label"> Numero Actual:</span>
-          
-          {{a[2]}} </mat-cell>
+          {{a[2]}}
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="acciones">
-        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>
+          <h3>Acciones</h3>
+        </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <span class="mobile-label">Acciones:</span>
 
-          <button mat-button color="primary" (click)="abrirDialogo(row)">
+          <button mat-button  (click)="abrirDialogo(row)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button color="primary" (click)="abrirDialogo(row)">
+          <button mat-button class="consultar" (click)="abrirDialogo(row)">
             <mat-icon>ballot</mat-icon>
           </button>
-          <button mat-button color="accent" (click)="eliminar(row)">
+          <button mat-button style="color: red;" (click)="eliminar(row)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
@@ -77,13 +94,23 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;">
       </mat-row>
     </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[15]"></mat-paginator>
+    <button mat-fab  (click)="abrirDialogoNuevo()" style="float: right; margin-right: 20px; background-color: dodgerblue;">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-fab style="float: left; margin-left: 20px ; background-color: red;">
+      <mat-icon>arrow_back</mat-icon>
+        
+    </button>
+    <!-- <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-light">Light</button>
+    <button type="button" class="btn btn-dark">Dark</button>
+    <button type="button" class="btn btn-link">Link</button> -->
+
   </div>
-
-  <br>
-
-  <button mat-fab color="accent" (click)="abrirDialogo()" style="float: right; margin-right: 20px">
-    <mat-icon>create</mat-icon>
-  </button>
-  <!-- </div> -->
 </div>

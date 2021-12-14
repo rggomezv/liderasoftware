@@ -17,7 +17,7 @@ export class TablaNumeracionService extends GenericService<TablaNumeracion>{
 
   constructor(protected http: HttpClient) {
     super(
-      http,`${environment.HOST}/rest/lconume/Listarlconume/0001`);
+      http,`${environment.HOST}/rest/lconume`);
   }
 
   /* get, set */

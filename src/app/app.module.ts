@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { TablaNumeracionComponent } from './pages/tabla-numeracion/tabla-numeracion.component';
 import { ModalTabNumComponent } from './pages/tabla-numeracion/modal-tab-num/modal-tab-num.component';
+import { ModalTbNuevoComponent } from './pages/tabla-numeracion/modal-tb-nuevo/modal-tb-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ModalTabNumComponent } from './pages/tabla-numeracion/modal-tab-num/mod
     MedicoDialogoComponent,
          TablaNumeracionComponent,
          ModalTabNumComponent,
+         ModalTbNuevoComponent,
       
   ],
   imports: [
