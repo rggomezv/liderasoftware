@@ -4,7 +4,7 @@
         Editar
       </div>
     <div class="card-body">
-        <div>
+        <form >
             <div class="dos comobo">
                 <mat-form-field appearance="fill" >
                     <mat-label>{{datosNuevos2[0]}} {{datosNuevos2[1]}}</mat-label>
@@ -21,7 +21,7 @@
             </div>
             <div class="dos">
                 <mat-form-field>
-                    <input matInput disabled=true placeholder="Ultimo numero Real" [(ngModel)]="datosNuevos[0].nl_nume">
+                    <input matInput disabled=true placeholder="Ultimo numero Real"value="{{datosNuevos[0].nl_nume}}">
                 </mat-form-field>
             </div>
             <div class="dos">
@@ -43,8 +43,6 @@
                 <button type="button" class=" btn btn-success" (click)="operar()"><i class="fas fa-save"></i></button>
                 <button type="button" class=" btn btn-danger" (click)="cerrar()"><i class="fas fa-long-arrow-alt-left"></i></button>
             </div>
-        
-        
-        </div>
+        </form>
     </div>
 </div>

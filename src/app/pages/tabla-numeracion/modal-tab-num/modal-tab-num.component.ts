@@ -18,6 +18,7 @@ export class ModalTabNumComponent implements OnInit {
   datosNuevos: TablaNumeracion;
   datosNuevos2: TablaNumeracion;
   date: Date = new Date();
+  datosReg:TablaNumeracion;
 
   constructor(
     private dialogRef: MatDialogRef<ModalTabNumComponent>,
@@ -33,7 +34,20 @@ export class ModalTabNumComponent implements OnInit {
   }
 
   operar() {
-    if (this.datosNuevos != null && this.datosNuevos[0] > 0) {
+    // this.datosReg={
+    //   pkID: {
+    //       nl_subdia:this.form.value.subdiario,
+    //       nl_anio: `${this.date.getFullYear()}`,
+    //       nl_mes: `${this.date.getMonth()+1}`
+    //   },
+    //   nl_nume:this.form.value.tex_nl_subdia ,
+    //   nl_usrcrea:"Mirella",
+    //   nl_feccrea:"",
+    //   nl_hracrea:"",
+    //   nl_usract:"",
+    //   nl_fecact:"",
+    //   nl_hraact:""
+  // }
       //MODIFICAR
       this.servivio.modificar(this.datosNuevos).pipe(switchMap(() => {
         return this.servivio.listar();
@@ -43,15 +57,7 @@ export class ModalTabNumComponent implements OnInit {
           this.servivio.setMensajeCambio("SE MODIFICO");
         });
 
-    } else {
-      //REGISTRAR
-      this.servivio.registrar(this.datosNuevos).subscribe(() => {
-        this.servivio.listar().subscribe(data => {
-          this.servivio.settabNumCambio(data);
-          this.servivio.setMensajeCambio("SE REGISTRO");
-        });
-      });
-    }
+    
     this.cerrar();
   }
 

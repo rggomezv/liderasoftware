@@ -54,7 +54,7 @@ export class ModalTbNuevoComponent implements OnInit {
           nl_mes: `${this.date.getMonth()+1}`
       },
       nl_nume:this.form.value.tex_nl_subdia ,
-      nl_usrcrea:"Mirella",
+      nl_usrcrea:"Usuario Temporal",
       nl_feccrea:"",
       nl_hracrea:"",
       nl_usract:"",
@@ -62,7 +62,7 @@ export class ModalTbNuevoComponent implements OnInit {
       nl_hraact:""
   }
       this.servivio.registrar(this.datosReg).subscribe((dta2) => {
-        this.servivio.listar().subscribe(data => {
+        this.servivio.listarPor(`${this.date.getFullYear()}`,`${this.date.getMonth()+1}`).subscribe(data => {
           this.servivio.settabNumCambio(data);
           this.servivio.setMensajeCambio(dta2['mensaje']+"");
           // console.log(this.datosReg);

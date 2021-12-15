@@ -26,7 +26,7 @@ export class ModalNumeAprobarComponent implements OnInit {
   }
   operar() {
    this.servicio.eliminarRegTablaNume(this.datosNuevos[0],this.datosNuevos[3],this.datosNuevos[4]).pipe(switchMap(() => {
-      return this.servicio.listar();
+      return this.servicio.listarPor(`${this.date.getFullYear()}`,`${this.date.getMonth()+1}`);
     }))
       .subscribe(data => {
         this.servicio.setMensajeCambio("SE ELIMINO");
