@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  HOST: 'http://162.243.160.12'
+  HOST: 'http://162.243.160.12',
+  HOSTLocal: 'http://162.243.160.12'
 };
 
 

@@ -29,7 +29,7 @@ export class GenericService<T> {
   }
 
   registrar(t: T) {
-    return this.http.post(this.url, t);
+    return this.http.post(this.url+'/registraNume/0001', t);
   }
 
   modificar(t: T) {

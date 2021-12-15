@@ -4,48 +4,41 @@
     </div>
     <div class="card-body">
         <div>
-            <div class="dos comobo">
-                <mat-form-field>
-                    <mat-select placeholder="Subdiario" [(ngModel)]="seleccionada" name="subdiario">
-                        <mat-option *ngFor="let op of datosCombo" [value]="op.pkID.tl_clave">
-                            {{op.tl_descri}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <!-- <mat-form-field  >
-                    <mat-label>Subdiario</mat-label>
-                    <mat-select disableRippleng >
-                      <mat-option  selected value="{{datosCombo[0].tl_descri}}">{{datosCombo[0].tl_descri}}</mat-option>
-                    </mat-select>
-                  </mat-form-field> -->
-            </div>
-            <div class="dos">
-                <mat-form-field>
-                    <input matInput placeholder="Ultimo numero Real">
-                </mat-form-field>
-            </div>
-            <div class="dos">
-                <!-- <ul>
-                    <p><small>Creación</small></p>
-                    <li>usuario: {{datosNuevos[0].nl_usrcrea}}</li>
-                    <li>Fecha: {{datosNuevos[0].nl_feccrea}}</li>
-                    <li>Hora: {{datosNuevos[0].nl_hracrea}}</li>
-                </ul> -->
-                <ul>
-                    <p><small>Creación</small></p>
-                    <li>usuario:</li>
-                    <li>Fecha: {{date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay()}}</li>
-                    <li>Hora: {{date.getHours()+":"+date.getMinutes()+":"+date.getMinutes()}}</li>
-                </ul>
-
-            </div>
-            <div class="dos">
-                <button type="button" class=" btn btn-success" (click)="operar()"><i class="fas fa-save"></i></button>
-                <button type="button" class=" btn btn-danger" (click)="cerrar()"><i
-                        class="fas fa-long-arrow-alt-left"></i></button>
-            </div>
-
-
+            <form [formGroup]="form" (submit)="operar()">
+                <div class="dos comobo">
+                    <mat-form-field>
+                        <mat-select placeholder="Subdiario"  formControlName="subdiario">
+                            <mat-option *ngFor="let op of datosCombo" [value]="op.pkID.tl_clave">
+                                {{op.tl_descri}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-form-field  >
+                        <mat-label>Subdiario</mat-label>
+                        <mat-select disableRippleng >
+                          <mat-option  selected value="{{datosCombo[0].tl_descri}}">{{datosCombo[0].tl_descri}}</mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                </div>
+                <div class="dos">
+                    <mat-form-field>
+                        <input formControlName="tex_nl_subdia" matInput placeholder="Ultimo numero Real">
+                    </mat-form-field>
+                </div>
+                <div class="dos">
+                    <ul>
+                        <p><small>Creación</small></p>
+                        <li>usuario:</li>
+                        <li>Fecha: {{date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay()}}</li>
+                        <li>Hora: {{date.getHours()+":"+date.getMinutes()+":"+date.getMinutes()}}</li>
+                    </ul>
+                </div>
+                <div class="dos">
+                    <button class=" btn btn-success" ><i class="fas fa-save"></i></button>
+                    <button type="button" class=" btn btn-danger" (click)="cerrar()"><i
+                            class="fas fa-long-arrow-alt-left"></i></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
