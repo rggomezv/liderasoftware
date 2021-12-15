@@ -6,6 +6,8 @@ import { switchMap } from 'rxjs/operators';
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
 
+// import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
+
 @Component({
   selector: 'app-modal-tab-num',
   templateUrl: './modal-tab-num.component.html',
@@ -26,6 +28,7 @@ export class ModalTabNumComponent implements OnInit {
   ngOnInit(): void {
     this.datosNuevos = { ...this.data['principal'] };
     this.datosNuevos2 = { ...this.data['secundario'] };
+   
     console.log(this.datosNuevos)
   }
 

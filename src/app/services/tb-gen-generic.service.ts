@@ -4,7 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class GenericService<T> {
+export class TbGenGeneric<T> {
 
   constructor(
     protected http: HttpClient,
@@ -12,9 +12,10 @@ export class GenericService<T> {
   ) { }
 
   listar(){
-    return this.http.get<T[]>(this.url+'/Listarlconume/0001');
+    return this.http.get<T[]>(this.url+'/listarporclave/0001/02');
+    // return 'Hola';
   }
-  listarPor(anio:string, mes:string){
+  listarPoooooooop(anio:string, mes:string){
     return this.http.get<T[]>(`${this.url}/Listarlconume/0001/${anio}/${mes}`);
   }
   listarSubDia(){

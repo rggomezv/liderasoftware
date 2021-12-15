@@ -9,6 +9,7 @@ import { switchMap } from 'rxjs/operators';
 //importante
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
+import { ModalNumeAprobarComponent } from './modal-nume-aprobar/modal-nume-aprobar.component';
 import { ModalTabNumComponent } from './modal-tab-num/modal-tab-num.component';
 import { ModalTbNuevoComponent } from './modal-tb-nuevo/modal-tb-nuevo.component';
 
@@ -22,6 +23,7 @@ export class TablaNumeracionComponent implements OnInit {
   displayedColumns = [ 'subdiario', 'apellidos', 'cmp', 'acciones'];
   // displayedColumns = ['id', 'anio', 'mes', 'subdiario', 'apellidos', 'cmp', 'acciones'];
   dataSource: MatTableDataSource<TablaNumeracion>;
+  date: Date = new Date();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,8 +43,8 @@ export class TablaNumeracionComponent implements OnInit {
       this.snackBar.open(data, 'AVISO', { duration: 2000 });
     });
 
-    this.tablaNumeracionService.listar().subscribe(data => {
-      // console.log(data)
+    this.tablaNumeracionService.listarPor(this.date.getFullYear()+"",this.date.getMonth()+1+"").subscribe(data => {
+      console.log(this.date.getUTCMonth())
       this.crearTabla(data);
     });
   }
@@ -73,7 +75,7 @@ export class TablaNumeracionComponent implements OnInit {
     this.tablaNumeracionService.listar().subscribe(rest => {
       // console.log(rest)
       this.dialog.open(ModalTbNuevoComponent, {
-        width: '400px',
+        width: '520px',
         data: rest
       });
     });
@@ -81,13 +83,17 @@ export class TablaNumeracionComponent implements OnInit {
   }
 
   eliminar(tablaNumeracion: TablaNumeracion) {
-    this.tablaNumeracionService.eliminarRegTablaNume(tablaNumeracion[0],tablaNumeracion[3],tablaNumeracion[4]).pipe(switchMap(() => {
-      return this.tablaNumeracionService.listar();
-    }))
-      .subscribe(data => {
-        this.tablaNumeracionService.setMensajeCambio("SE ELIMINO");
-        this.tablaNumeracionService.settabNumCambio(data);
-      });
+    this.dialog.open(ModalNumeAprobarComponent, {
+      width: '400px',
+      data: tablaNumeracion
+    });
+    // this.tablaNumeracionService.eliminarRegTablaNume(tablaNumeracion[0],tablaNumeracion[3],tablaNumeracion[4]).pipe(switchMap(() => {
+    //   return this.tablaNumeracionService.listar();
+    // }))
+    //   .subscribe(data => {
+    //     this.tablaNumeracionService.setMensajeCambio("SE ELIMINO");
+    //     this.tablaNumeracionService.settabNumCambio(data);
+    //   });
   }
 
 

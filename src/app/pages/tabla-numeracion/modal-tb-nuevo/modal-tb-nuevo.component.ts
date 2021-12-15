@@ -2,9 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { switchMap } from 'rxjs/operators';
 
-
+import { TbGenModel } from 'src/app/model/tb-gen-model';
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
+import { TbGen } from 'src/app/services/tb-gen.service';
+
 
 @Component({
   selector: 'app-modal-tb-nuevo',
@@ -16,16 +18,25 @@ export class ModalTbNuevoComponent implements OnInit {
   datosNuevos: TablaNumeracion;
   datosNuevos2: TablaNumeracion;
   date: Date = new Date();
-
+  // datosCombo:TbGenModel[]=[];
+  datosCombo;
+  seleccionada: string ;
   constructor(
     private dialogRef: MatDialogRef<ModalTbNuevoComponent>,
     @Inject(MAT_DIALOG_DATA) private data: TablaNumeracion,
-    private servivio: TablaNumeracionService
+    private servivio: TablaNumeracionService,
+    private servivioTbGen:TbGen
   ) { }
 
   ngOnInit(): void {
     this.datosNuevos = { ...this.data };
-    console.log( this.datosNuevos)
+    // console.log( this.servivioTbGen.listar())
+
+    this.servivioTbGen.listar().subscribe(data=> {
+      this.datosCombo=data;
+      console.log(this.datosCombo[0]);
+      this.seleccionada= this.datosCombo[0].pkID.tl_clave;
+    });
     // this.datosNuevos2 = { ...this.data['secundario'] };
     // console.log(this.datosNuevos)
   }

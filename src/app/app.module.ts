@@ -18,6 +18,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { TablaNumeracionComponent } from './pages/tabla-numeracion/tabla-numeracion.component';
 import { ModalTabNumComponent } from './pages/tabla-numeracion/modal-tab-num/modal-tab-num.component';
 import { ModalTbNuevoComponent } from './pages/tabla-numeracion/modal-tb-nuevo/modal-tb-nuevo.component';
+import { ModalNumeAprobarComponent } from './pages/tabla-numeracion/modal-nume-aprobar/modal-nume-aprobar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ModalTbNuevoComponent } from './pages/tabla-numeracion/modal-tb-nuevo/m
          TablaNumeracionComponent,
          ModalTabNumComponent,
          ModalTbNuevoComponent,
+         ModalNumeAprobarComponent,
       
   ],
   imports: [
