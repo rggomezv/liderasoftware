@@ -11,6 +11,7 @@
   }
   .buscar .mat-icon{
     color: dimgray;
+    margin-top: 13px;
   }
   .consultar .mat-icon{
     color: dodgerblue;

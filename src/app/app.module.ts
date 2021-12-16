@@ -19,6 +19,7 @@ import { TablaNumeracionComponent } from './pages/tabla-numeracion/tabla-numerac
 import { ModalTabNumComponent } from './pages/tabla-numeracion/modal-tab-num/modal-tab-num.component';
 import { ModalTbNuevoComponent } from './pages/tabla-numeracion/modal-tb-nuevo/modal-tb-nuevo.component';
 import { ModalNumeAprobarComponent } from './pages/tabla-numeracion/modal-nume-aprobar/modal-nume-aprobar.component';
+import { ModalTbViewComponent } from './pages/tabla-numeracion/modal-tb-view/modal-tb-view.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ModalNumeAprobarComponent } from './pages/tabla-numeracion/modal-nume-a
          ModalTabNumComponent,
          ModalTbNuevoComponent,
          ModalNumeAprobarComponent,
+         ModalTbViewComponent,
       
   ],
   imports: [

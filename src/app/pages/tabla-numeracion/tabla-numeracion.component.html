@@ -4,18 +4,18 @@
     <!-- botones -->
     <div class="container text-center">
       <div class="row">
-        <div class="col-12 col-sm-6 d-flex justify-content-evenly">
+        <div class="col-12 col-sm-6 d-flex justify-content-start ">
           <div class="row">
             <div class="col-12 col-sm-6">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Año</mat-label>
-                <input matInput value="2021">
+                <input matInput value="2021" disabled=true>
               </mat-form-field>
             </div>
             <div class="col-12 col-sm-6">
               <mat-form-field appearance="fill">
             <mat-label>Mes</mat-label>
-            <mat-select id="listCenTra" (selectionChange)="onChange($event.value)">
+            <mat-select id="listCenTra" value="{{date.getMonth()+1}}" (selectionChange)="onChange($event.value)">
               <mat-option value="01">01</mat-option>
               <mat-option value="02">02</mat-option>
               <mat-option value="03">03</mat-option>
@@ -35,7 +35,7 @@
 
           
         </div>
-        <div class="col-12 col-sm-6 buscar">
+        <div class="col-12 col-sm-6 buscar d-flex justify-content-end">
           <mat-icon>search</mat-icon>
           <mat-form-field>
             <input matInput (keyup)="filtrar($event)" placeholder="Buscar ">
@@ -81,7 +81,7 @@
           <button mat-button  (click)="abrirDialogo(row)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button class="consultar" (click)="abrirDialogo(row)">
+          <button mat-button class="consultar" (click)="abrirDialogoView(row)">
             <mat-icon>visibility</mat-icon>
           </button>
           <button mat-button style="color: red;" (click)="eliminar(row)">

@@ -13,6 +13,7 @@ import { ModalNumeAprobarComponent } from './modal-nume-aprobar/modal-nume-aprob
 import { ModalTabNumComponent } from './modal-tab-num/modal-tab-num.component';
 import { ModalTbNuevoComponent } from './modal-tb-nuevo/modal-tb-nuevo.component';
 import { datosCargar } from 'src/environments/environment';
+import { ModalTbViewComponent } from './modal-tb-view/modal-tb-view.component';
 
 
 @Component({
@@ -26,7 +27,6 @@ export class TablaNumeracionComponent implements OnInit {
   // displayedColumns = ['id', 'anio', 'mes', 'subdiario', 'apellidos', 'cmp', 'acciones'];
   dataSource: MatTableDataSource<TablaNumeracion>;
   date: Date = new Date();
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -75,6 +75,19 @@ export class TablaNumeracionComponent implements OnInit {
     let urlTest = this.tablaNumeracionService.listarPorId(tablaNumeracion[0], tablaNumeracion[3], tablaNumeracion[4])
     urlTest.subscribe((data2: TablaNumeracion) => {
       this.dialog.open(ModalTabNumComponent, {
+        width: '500',
+        data: {
+           principal:data2,
+           secundario: tablaNumeracion,
+          }
+      });
+    });
+  }
+  abrirDialogoView(tablaNumeracion?: TablaNumeracion) {
+    let urlTest = this.tablaNumeracionService.listarPorId(tablaNumeracion[0], tablaNumeracion[3], tablaNumeracion[4])
+    urlTest.subscribe((data2: TablaNumeracion) => {
+      // console.log(data2);
+      this.dialog.open(ModalTbViewComponent, {
         width: '500',
         data: {
            principal:data2,

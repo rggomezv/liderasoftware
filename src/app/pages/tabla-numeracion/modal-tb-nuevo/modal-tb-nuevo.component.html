@@ -13,6 +13,30 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+
+
+
+
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Assignee</mat-label>
+                        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.tl_descri}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+
+                    <!-- <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Number</mat-label>
+                        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                            [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions[0] | async" [value]="option.tl_descri">
+                                {{option.tl_descri}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field> -->
                     <!-- <mat-form-field  >
                         <mat-label>Subdiario</mat-label>
                         <mat-select disableRippleng >
@@ -34,7 +58,7 @@
                     </ul>
                 </div>
                 <div class="dos">
-                    <button class=" btn btn-success" ><i class="fas fa-save"></i></button>
+                    <button class=" btn btn-success"><i class="fas fa-save"></i></button>
                     <button type="button" class=" btn btn-danger" (click)="cerrar()"><i
                             class="fas fa-long-arrow-alt-left"></i></button>
                 </div>

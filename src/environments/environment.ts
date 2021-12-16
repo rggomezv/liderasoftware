@@ -11,7 +11,8 @@ export const environment = {
 
 };
 export const datosCargar={
-    mesCambios:0
+    mesCambios:0,
+    anio:2019
 };
 
 

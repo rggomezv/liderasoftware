@@ -1,26 +1,38 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { switchMap } from 'rxjs/operators';
+import { map, startWith, switchMap } from 'rxjs/operators';
 
 import { TbGenModel } from 'src/app/model/tb-gen-model';
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
 import { TbGen } from 'src/app/services/tb-gen.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
-
+export interface User {
+  name: string;
+}
 @Component({
   selector: 'app-modal-tb-nuevo',
   templateUrl: './modal-tb-nuevo.component.html',
   styleUrls: ['./modal-tb-nuevo.component.css']
 })
+
+
 export class ModalTbNuevoComponent implements OnInit {
+  myControl = new FormControl();
+  options: TbGenModel[];
+  filteredOptions: Observable<TbGenModel[]>;
+
+
+
 
   datosNuevos: TablaNumeracion;
   datosNuevos2: TablaNumeracion;
   date: Date = new Date();
   datosReg:TablaNumeracion;
   datosCombo;
+
   seleccionada: string ;
   public form:FormGroup;
   constructor(
@@ -37,12 +49,20 @@ export class ModalTbNuevoComponent implements OnInit {
     this.servivioTbGen.listar().subscribe(data=> {
       this.datosCombo=data;
       console.log(this.datosCombo[0]);
+      this.options= this.datosCombo;
       this.seleccionada= this.datosCombo[0].pkID.tl_clave;
     });
     this.form=this.formBuilder.group({
       tex_nl_subdia:['',Validators.required],
       subdiario:['',Validators.required]
     })
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(val =>this._filter(val)),
+      // map(value => (typeof value === 'string' ? value : value.name)),
+      // map(name => (name ? this._filter(name) : this.options.slice())),
+    );
   }
 
   operar() {
@@ -88,6 +108,16 @@ export class ModalTbNuevoComponent implements OnInit {
 
   cerrar() {
     this.dialogRef.close();
+  }
+
+  displayFn(user: TbGenModel): string {
+    return user && user.tl_descri ? user.tl_descri : '';
+  }
+
+  private _filter(tl_descri: string): TbGenModel[] {
+    const filterValue = tl_descri.toLowerCase();
+
+    return this.options.filter(option => option.tl_descri.toLowerCase().includes(filterValue));
   }
 
 }
