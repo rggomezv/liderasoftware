@@ -4,7 +4,10 @@ import { switchMap } from 'rxjs/operators';
 
 
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
+import { environment } from 'src/environments/environment';
+
 
 // import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 
@@ -19,11 +22,14 @@ export class ModalTabNumComponent implements OnInit {
   datosNuevos2: TablaNumeracion;
   date: Date = new Date();
   datosReg:TablaNumeracion;
+  public form:FormGroup;
+  private environment;
 
   constructor(
     private dialogRef: MatDialogRef<ModalTabNumComponent>,
     @Inject(MAT_DIALOG_DATA) private data: TablaNumeracion,
-    private servivio: TablaNumeracionService
+    private servivio: TablaNumeracionService,
+    private formBuilder:FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -31,30 +37,49 @@ export class ModalTabNumComponent implements OnInit {
     this.datosNuevos2 = { ...this.data['secundario'] };
    
     console.log(this.datosNuevos)
+    this.form=this.formBuilder.group({
+      tex_nl_subdia:['',Validators.required],
+      subdiario:['',Validators.required]
+    })
   }
 
   operar() {
-    // this.datosReg={
-    //   pkID: {
-    //       nl_subdia:this.form.value.subdiario,
-    //       nl_anio: `${this.date.getFullYear()}`,
-    //       nl_mes: `${this.date.getMonth()+1}`
-    //   },
-    //   nl_nume:this.form.value.tex_nl_subdia ,
-    //   nl_usrcrea:"Mirella",
-    //   nl_feccrea:"",
-    //   nl_hracrea:"",
-    //   nl_usract:"",
-    //   nl_fecact:"",
-    //   nl_hraact:""
-  // }
+    this.datosReg={
+        // "pkID": {
+        //     "nl_subdia":"08",
+        //     "nl_anio": "2021",
+        //     "nl_mes": "06"
+        // },
+        // "nl_nume":100,
+        // "nl_usrcrea":"",
+        // "nl_feccrea":"",
+        // "nl_hracrea":"",
+        // "nl_usract":"",
+        // "nl_fecact":"",
+        // "nl_hraact":""
+    
+      "pkID": {
+          "nl_subdia":`${this.datosNuevos[0].pkID.nl_subdia}`,
+          "nl_anio":`${this.datosNuevos[0].pkID.nl_anio}`,
+          "nl_mes":`${this.datosNuevos[0].pkID.nl_mes}`
+      },
+      "nl_nume":this.form.value.tex_nl_subdia*1,
+      "nl_usrcrea":"",
+      "nl_feccrea":"",
+      "nl_hracrea":"",
+      "nl_usract":"",
+      "nl_fecact":"",
+      "nl_hraact":""
+  }
       //MODIFICAR
-      this.servivio.modificar(this.datosNuevos).pipe(switchMap(() => {
-        return this.servivio.listar();
+      this.servivio.modificar(this.datosReg).pipe(switchMap((data2) => {
+        console.log(data2)
+        return this.servivio.listarPor(`${this.datosNuevos[0].pkID.nl_anio}`,`${this.datosNuevos[0].pkID.nl_mes}`);
       }))
         .subscribe(data => {
           this.servivio.settabNumCambio(data);
-          this.servivio.setMensajeCambio("SE MODIFICO");
+          this.servivio.setMensajeCambio("Actualizado");
+          console.log(this.datosReg)
         });
 
     

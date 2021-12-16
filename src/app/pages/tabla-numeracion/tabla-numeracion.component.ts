@@ -12,6 +12,8 @@ import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.servic
 import { ModalNumeAprobarComponent } from './modal-nume-aprobar/modal-nume-aprobar.component';
 import { ModalTabNumComponent } from './modal-tab-num/modal-tab-num.component';
 import { ModalTbNuevoComponent } from './modal-tb-nuevo/modal-tb-nuevo.component';
+import { datosCargar } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-tabla-numeracion',
@@ -31,10 +33,12 @@ export class TablaNumeracionComponent implements OnInit {
   constructor(
     private tablaNumeracionService: TablaNumeracionService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
+    datosCargar.mesCambios=this.date.getMonth()+1;
     this.tablaNumeracionService.gettabNumCambio().subscribe(data => {
       this.crearTabla(data);
     });
@@ -52,8 +56,16 @@ export class TablaNumeracionComponent implements OnInit {
   filtrar(e: any) {
     this.dataSource.filter = e.target.value.trim().toLowerCase();
   }
-
+  onChange(centroId) {
+    // console.log(centroId); // Aquí iría tu lógica al momento de seleccionar algo
+    this.tablaNumeracionService.listarPor(this.date.getFullYear()+"",centroId).subscribe(data => {
+      // console.log(this.date.getUTCMonth())
+      this.crearTabla(data);
+      datosCargar.mesCambios=centroId;
+    });
+}
   crearTabla(data: TablaNumeracion[]) {
+    
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

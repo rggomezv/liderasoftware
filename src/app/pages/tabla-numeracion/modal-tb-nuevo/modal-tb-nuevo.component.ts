@@ -49,19 +49,33 @@ export class ModalTbNuevoComponent implements OnInit {
    
     this.datosReg={
       pkID: {
-          nl_subdia:this.form.value.subdiario,
-          nl_anio: `${this.date.getFullYear()}`,
-          nl_mes: `${this.date.getMonth()+1}`
-      },
-      nl_nume:this.form.value.tex_nl_subdia ,
-      nl_usrcrea:"Usuario Temporal",
-      nl_feccrea:"",
-      nl_hracrea:"",
-      nl_usract:"",
-      nl_fecact:"",
-      nl_hraact:""
+        nl_subdia:`${this.form.value.subdiario}`,
+        nl_anio:`${this.date.getFullYear()}`,
+        nl_mes:`${this.date.getMonth()+1}`
+    },
+    nl_nume:this.form.value.tex_nl_subdia*1,
+    nl_usrcrea:"Test User",
+    nl_feccrea:"",
+    nl_hracrea:"",
+    nl_usract:"",
+    nl_fecact:"",
+    nl_hraact:"",
+      
+      // pkID: {
+      //     nl_subdia:this.form.value.subdiario,
+      //     nl_anio: `${this.date.getFullYear()}`,
+      //     nl_mes: `${this.date.getMonth()+1}`
+      // },
+      // nl_nume:this.form.value.tex_nl_subdia*1,
+      // nl_usrcrea:"Usuario Temporal",
+      // nl_feccrea:"",
+      // nl_hracrea:"",
+      // nl_usract:"",
+      // nl_fecact:"",
+      // nl_hraact:""
   }
       this.servivio.registrar(this.datosReg).subscribe((dta2) => {
+        console.log(this.datosReg);
         this.servivio.listarPor(`${this.date.getFullYear()}`,`${this.date.getMonth()+1}`).subscribe(data => {
           this.servivio.settabNumCambio(data);
           this.servivio.setMensajeCambio(dta2['mensaje']+"");

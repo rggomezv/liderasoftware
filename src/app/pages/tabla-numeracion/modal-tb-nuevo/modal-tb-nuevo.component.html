@@ -7,7 +7,7 @@
             <form [formGroup]="form" (submit)="operar()">
                 <div class="dos comobo">
                     <mat-form-field>
-                        <mat-select placeholder="Subdiario"  formControlName="subdiario">
+                        <mat-select placeholder="Subdiario" [(value)]="seleccionada" formControlName="subdiario">
                             <mat-option *ngFor="let op of datosCombo" [value]="op.pkID.tl_clave">
                                 {{op.tl_descri}}
                             </mat-option>

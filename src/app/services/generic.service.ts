@@ -33,7 +33,7 @@ export class GenericService<T> {
   }
 
   modificar(t: T) {
-    return this.http.put(this.url+'/registraNume/0001', t);
+    return this.http.put(this.url+'/actuTablaNume/0001', t);
   }
 
   eliminar(id: number) {

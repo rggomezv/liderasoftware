@@ -5,6 +5,8 @@ import { switchMap } from 'rxjs/operators';
 
 import { TablaNumeracion } from 'src/app/model/tabla-numeracion';
 import { TablaNumeracionService } from 'src/app/services/tabla-numeracion.service';
+import { datosCargar } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-modal-nume-aprobar',
@@ -26,7 +28,7 @@ export class ModalNumeAprobarComponent implements OnInit {
   }
   operar() {
    this.servicio.eliminarRegTablaNume(this.datosNuevos[0],this.datosNuevos[3],this.datosNuevos[4]).pipe(switchMap(() => {
-      return this.servicio.listarPor(`${this.date.getFullYear()}`,`${this.date.getMonth()+1}`);
+      return this.servicio.listarPor(`${this.date.getFullYear()}`,`${datosCargar.mesCambios}`);
     }))
       .subscribe(data => {
         this.servicio.setMensajeCambio("SE ELIMINO");
